@@ -48,14 +48,17 @@ Voici les résultats obtenus, avec l'architecture suivante:
 Le réseau peut converger parfaitement à partir de X (nb de neurones cachés) = 2, mais le résultat dépendra de l'initialisation. Pour X=5, les résultats sont robustes. On pourrait utiliser un learning rate plus élevé pour une convergence plus rapide, mais c'était sans importance ici.
 
 X=2, convergence:
+
 ![Figure 3](./images/Figure_3_conv.png)
 
 
 X=2, exmple de mauvaise convergence:
+
 ![Figure 3](./images/Figure_3_div.png)
 
 
-X=5
+X=5: 
+
 ![Figure 3](./images/Figure_3.png)
 
 ## Conclusion 
