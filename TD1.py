@@ -55,13 +55,12 @@ def train(model, train_data, train_target, test_data, test_target, n_epochs=200)
         optim.step()
     return e, a, l
 
-def genData(nTrainingSamples):
+def genData(nTrainingSamples, nTestSamples):
 
     x = 6 * (np.random.rand(nTrainingSamples, 2)-.5)
     y = np.cos(x[:,0]) + np.sin(x[:,1])
     y = np.expand_dims(y, axis=1)
 
-    nTestSamples = 100
     xt = 6 * (np.random.rand(nTestSamples, 2)-.5)
     yt = np.cos(xt[:,0]) + np.sin(xt[:,1])
     yt = np.expand_dims(yt, axis=1)
@@ -70,7 +69,7 @@ def genData(nTrainingSamples):
 
 
 if __name__ == "__main__":
-    x,y,xt,yt=genData(100)
+    x,y,xt,yt=genData(100, 100)
     xp = np.array([[0, (u/100 - .5)*6] for u in range(100)])
     yp = np.cos(xp[:,0]) + np.sin(xp[:,1])
     
@@ -83,7 +82,8 @@ if __name__ == "__main__":
     fig2.suptitle("Behaviour during training (200 epochs)")
     for i in range(3):
         for j in range(3):
-            model = Net([2, (j+1)*30, 1], \
+            nhid = (j+1)*30
+            model = Net([2, nhid, 1], \
                         [fcts[i]]*3) 
             e,acc,loss = train(model,x, y,xt,yt)
 
@@ -96,9 +96,9 @@ if __name__ == "__main__":
             ax2[i, j].plot(e,acc,'b-',label='MSE')
             ax2[i, j].plot(e,loss,'r-',label='loss')
 
-            ax1[i, j].set_title(fctsNames[i] + f" : {(j+1)*30} hidden neurons")
+            ax1[i, j].set_title(fctsNames[i] + f" : {nhid} hidden neurons")
             ax1[i, j].legend()
-            ax2[i, j].set_title(fctsNames[i] + f" : {(j+1)*30} hidden neurons")
+            ax2[i, j].set_title(fctsNames[i] + f" : {nhid} hidden neurons")
             ax2[i, j].legend()
     
 

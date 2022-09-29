@@ -13,6 +13,7 @@ Pour ce TD, nous avons choisi d'évaluer l'influence de choix d'architectures et
 Sauf précision, lorsqu'un paramètre changera les autres resteront constants. On utilisera un réseau feed-forward fully-connected tout au long des experiences. Les neurones seront de type <img src="images/033ad66e7dc7bc0d794635f016a1e5f2.svg?invert_in_darkmode" align=middle width=86.17380089999997pt height=24.65753399999998pt/>, et <img src="images/190083ef7a1625fbc75f243cffb9c96d.svg?invert_in_darkmode" align=middle width=9.81741584999999pt height=22.831056599999986pt/> est identique dans tout les neurones d'une même couche.
 
 ## I - Activations classiques
+#
 
 Dans cette partie, les fonctions d'activation f des neurones seront des fonctions "classiques": TanH, sigmoïde, ReLu.
 
@@ -25,16 +26,13 @@ Voici les résultats pour différentes tailles de couches cachées (une seule co
 
 Valeurs pour <img src="images/478d6c4eff797ea6356f6d894888d0ed.svg?invert_in_darkmode" align=middle width=112.12316279999997pt height=24.65753399999998pt/>, pour <img src="images/8436d02a042a1eec745015a5801fc1a0.svg?invert_in_darkmode" align=middle width=39.53182859999999pt height=21.18721440000001pt/> et y entre <img src="images/175ccc5874192ac2826db5f07bc0afba.svg?invert_in_darkmode" align=middle width=21.00464354999999pt height=21.18721440000001pt/> et <img src="images/5dc642f297e291cfdde8982599601d7e.svg?invert_in_darkmode" align=middle width=8.219209349999991pt height=21.18721440000001pt/> (comme dans le corpus d'entrainement):
 
-# image #
-
 Dynamiques de convergence:
 
 ![Figure 1](./images/Figure_1.png)
 ![Figure 2](./images/Figure_2.png)
 
-# image #
-
-## II - Activations sinusoïdales
+## II - Activations sinusoïdales 
+#
 
 Dans cette partie, on choisit la fonction d'activation sinus pour la couche de sortie. Elle n'est pas disponible par défault dans pytorch, il faut donc l'implémenter en sous-classant nn.Module. Sin est cependant présent dans la librairie (torch.sin), donc il n'est pas nécessaire de réimplémenter la propagation du gradient à travers l'activation.
 
@@ -51,8 +49,12 @@ Le réseau peut converger parfaitement à partir de X (nb de neurones cachés) =
 
 X=2, convergence:
 ![Figure 3](./images/Figure_3_conv.png)
+
+
 X=2, exmple de mauvaise convergence:
 ![Figure 3](./images/Figure_3_div.png)
+
+
 X=5
 ![Figure 3](./images/Figure_3.png)
 
@@ -60,7 +62,7 @@ X=5
 
 On aurait pu mettre l' activation sinus en entrée, ou choisir une architecture différente. L'important ici est que selon le problème, avoir directement des activations appropriées peut apporter énormément aux performances d'un réseau. Par exemple, un réseau feedforward utilisé pour une tâche de reinforcement learning incluant des déplacements dans l'espace gagne beaucoup à implémenter des fonctions type cosinus, racine carrée, multiplication, division (ou passage à l'inverse). L'implémentation est cependant plus complexe, puisque l'entrée des neurones n'est plus nécessairement le produit matrice vecteur des poids par les activations.
 
-
-
-
+## Références
+Le style du code, notamment pour définir la forme et les fonctions d'activations du modèle, est inspiré de la doc pytorch:
+https://pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html
 
